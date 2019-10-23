@@ -27,6 +27,11 @@ def get_resource_path(package, resource):
 @click.option('--as-layer', is_flag=True, help='Whether to compile the zip file as a Lambda layer. If the flag is present, the zip archive will support '
                                                'uploading as a Lambda Layer. If it is not present, the zip archive will support uploading as a Lambda Function.')
 def build(build_context, output_dir, runtime, as_layer):
+    """
+    Compiles a zip archive that can be uploaded to AWS Lambda as either a Function or a Layer. The BUILD_CONTEXT must contain a requirements.txt file that lists
+    all of the Python dependencies. If you are compiling a Layer, that's all you need. If you are compiling a Function, you should put all of your Python code
+    within the BUILD_CONTEXT directory as well.
+    """
 
     client = docker.from_env()
 
