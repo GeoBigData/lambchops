@@ -1,24 +1,18 @@
 # Lambda Compiler
 
-# Build
+# Install
 
 ```console
-$ ./build.sh
+$ pip install git+https://github.com/GeoBigData/lambchops.git
 ```
 
-This will create a `build` directory with a `lambda_package` sub-directory and a `lambda_package.zip` file. The 
-sub-directory is used by the `test.sh` script and the ZIP file can be uploaded to the Lambda function.
-
-# Test
+# Examples
 
 ```console
-$ export GBDX_USERNAME=<your_username>
-$ export GBDX_PASSWORD=<your_password>
-$ ./test.sh
+$ git clone https://github.com/GeoBigData/lambchops.git
+$ cd lambchops
+$ mkdir ./examples/function/build
+$ lambchops build ./examples/function/context/ ./examples/function/build --runtime python3.6
+$ mkdir ./examples/layer/build
+$ lambchops build ./examples/layer/context/ ./examples/layer/build --runtime python3.7 --as-layer
 ```
-
-# Deploy
-
-You can upload the `build/lambda_package.zip` file into your Lambda function in the AWS console.
-
-**You'll need to set the username and password environment variables on the function in order for gbdxtools to work.**
