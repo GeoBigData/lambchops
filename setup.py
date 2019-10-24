@@ -1,7 +1,6 @@
 import sys
 import os.path
 from setuptools import setup, find_packages
-import configparser
 
 open_kwds = {}
 if sys.version_info > (3,):
@@ -13,19 +12,9 @@ req_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "requirement
 with open(req_path, **open_kwds) as f:
     requires = f.read().splitlines()
 
-# Get the version from the package
-config = configparser.ConfigParser()
-config.read(os.path.join(here, '.bumpversion.cfg'))
-version = config['bumpversion']['current_version']
-
-# with open('README.md', **open_kwds) as f:
-#     readme = f.read()
-
-# long_description=readme,
-
 setup(
       name='lambchops',
-      version=version,
+      version='0.0.1',
       python_requires='>=3.6',
       description='CLI tools for compiling AWS Lambda functions and layers',
       classifiers=[
