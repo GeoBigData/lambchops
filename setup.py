@@ -26,8 +26,15 @@ version = config['bumpversion']['current_version']
 setup(
       name='lambchops',
       version=version,
+      python_requires='>=3.6',
       description='CLI tools for compiling AWS Lambda functions and layers',
-      classifiers=[],
+      classifiers=[
+            'Development Status :: 3 - Alpha',
+            'Environment :: Console',
+            'Intended Audience :: Developers',
+            'Operating System :: MacOS :: MacOS X',
+            'Programming Language :: Python',
+      ],
       keywords='',
       author='Maxar',
       author_email='jon.duckworth@maxar.com',
