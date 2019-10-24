@@ -14,10 +14,8 @@ rm -rf ${compile_dir};
 mkdir -p ${compile_dir};
 pip install -r /mnt/app/requirements.txt -t ${compile_dir} --upgrade;
 
-if [ $COMPILE_TYPE == 'function' ]; then
-	cp /mnt/app/* ${compile_dir}/;
-	rm -rf ${compile_dir}/requirements.txt;
-fi
+cp /mnt/app/* ${compile_dir}/;
+rm -rf ${compile_dir}/requirements.txt;
 
 cd /tmp/outputs/package;
 
