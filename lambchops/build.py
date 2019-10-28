@@ -29,8 +29,8 @@ def get_resource_path(package, resource):
 @click.command()
 @click.argument('build_context', type=click.Path(dir_okay=True, file_okay=False, exists=True, resolve_path=True))
 @click.argument('output_dir', type=click.Path(dir_okay=True, file_okay=False, exists=True, resolve_path=True))
-@click.option('--runtime', type=click.Choice(['python2.7', 'python3.6', 'python3.7']), default='python3.7', help='The AWS Lambda runtime to use.')
-@click.option('--as-layer', is_flag=True, help='Whether to compile the zip file as a Lambda layer. If the flag is present, the zip archive will support '
+@click.option('--runtime', '-r', type=click.Choice(['python2.7', 'python3.6', 'python3.7']), default='python3.7', help='The AWS Lambda runtime to use.')
+@click.option('--as-layer', '-l', is_flag=True, help='Whether to compile the zip file as a Lambda layer. If the flag is present, the zip archive will support '
                                                'uploading as a Lambda Layer. If it is not present, the zip archive will support uploading as a Lambda Function.')
 @click.option('--output-name', '-o', default='package', help='The name of the output zip file (and the associated folder). The zip file will be named {output_name}.zip.')
 def build(build_context, output_dir, runtime, as_layer, output_name):

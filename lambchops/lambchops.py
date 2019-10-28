@@ -1,6 +1,7 @@
 import click
 
 from .build import build
+from .deploy import deploy
 
 
 @click.group()
@@ -9,3 +10,4 @@ def lambchops():
 
 
 lambchops.add_command(build)
+lambchops.add_command(deploy)
