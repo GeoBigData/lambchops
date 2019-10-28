@@ -14,7 +14,7 @@ with open(req_path, **open_kwds) as f:
 
 setup(
       name='lambchops',
-      version='0.0.2',
+      version='0.0.3',
       python_requires='>=3.6',
       description='CLI tools for compiling AWS Lambda functions and layers',
       classifiers=[
