@@ -17,7 +17,7 @@ rm -rf ${zip_name};
 mkdir -p ${compile_dir};
 pip install -r /mnt/app/requirements.txt -t ${compile_dir} --upgrade;
 
-cp /mnt/app/* ${compile_dir}/;
+cp -r /mnt/app/* ${compile_dir}/;
 rm -rf ${compile_dir}/requirements.txt;
 
 cd /tmp/outputs/${OUTPUT_NAME};
