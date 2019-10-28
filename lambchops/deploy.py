@@ -29,7 +29,8 @@ def deploy(package, function_name, aws_profile):
             ZipFile=package.read()
         )
         click.secho(
-            f'Successfully deployed {package.name} to function {function_name}'
+            f'Successfully deployed {package.name} to function {function_name}',
+            fg='green'
         )
     except botocore.exceptions.ClientError as e:
         boto_error = e.response.get('Error')
