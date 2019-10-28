@@ -1,15 +1,18 @@
 #!/bin/bash
 
 COMPILE_TYPE=$1;
+OUTPUT_NAME=$2;
+
+zip_name="/tmp/outputs/${OUTPUT_NAME}";
 
 if [ $COMPILE_TYPE == 'layer' ]; then
-	compile_dir="/tmp/outputs/package/python";
+	compile_dir="${zip_name}/python";
 else
-	compile_dir="/tmp/outputs/package";
+	compile_dir=${zip_name};
 fi
 
-rm -rf /tmp/outputs/package.zip;
-rm -rf ${compile_dir};
+rm -rf ${zip_name}.zip;
+rm -rf ${zip_name};
 
 mkdir -p ${compile_dir};
 pip install -r /mnt/app/requirements.txt -t ${compile_dir} --upgrade;
@@ -17,6 +20,6 @@ pip install -r /mnt/app/requirements.txt -t ${compile_dir} --upgrade;
 cp /mnt/app/* ${compile_dir}/;
 rm -rf ${compile_dir}/requirements.txt;
 
-cd /tmp/outputs/package;
+cd /tmp/outputs/${OUTPUT_NAME};
 
-zip -r ../package.zip ./*;
+zip -r ../${OUTPUT_NAME}.zip ./*;
