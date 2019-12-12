@@ -15,7 +15,11 @@ rm -rf ${zip_name}.zip;
 rm -rf ${zip_name};
 
 mkdir -p ${compile_dir};
-pip install -r /mnt/app/requirements.txt -t ${compile_dir} --upgrade;
+
+if [[ -f /mnt/app/requirements.txt ]];
+then
+	pip install -r /mnt/app/requirements.txt -t ${compile_dir} --upgrade;
+fi
 
 cp -r /mnt/app/* ${compile_dir}/;
 rm -rf ${compile_dir}/requirements.txt;
