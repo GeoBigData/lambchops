@@ -1,6 +1,4 @@
-import os
-import sys
-
+import importlib_resources
 import click
 import docker
 
@@ -9,21 +7,6 @@ COMPILER_MAPPING = {
     'python3.6': 'compile-python.sh',
     'python3.7': 'compile-python.sh'
 }
-
-
-def get_resource_path(package, resource):
-    if sys.version_info >= (3,7):
-        import importlib.resources
-
-        resource_path = importlib.resources.path(package, resource)
-        if not os.path.exists(resource_path):
-            raise ValueError(f'Could not find resource "{resource}" in package "{package}"')
-    else:
-        import pkg_resources
-
-        if not pkg_resources.resource_exists(package, resource):
-            raise ValueError(f'Could not find resource "{resource}" in package "{package}"')
-        return pkg_resources.resource_filename(package, resource)
 
 
 @click.command()
@@ -43,7 +26,7 @@ def build(build_context, output_dir, runtime, as_layer, output_name, image):
 
     client = docker.from_env()
 
-    compilers_dir = get_resource_path('lambchops', 'compilers/')
+    compilers_dir = importlib_resources.files('lambchops').joinpath('compilers')
     compiler_name = COMPILER_MAPPING[runtime]
 
     image = image or f'lambci/lambda:build-{runtime}'
@@ -58,5 +41,3 @@ def build(build_context, output_dir, runtime, as_layer, output_name, image):
         }
 
     )
-
-    pass

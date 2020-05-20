@@ -1,3 +1,4 @@
 click
 docker
 boto3
+importlib_resources
